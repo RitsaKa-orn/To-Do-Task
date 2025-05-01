@@ -1,0 +1,109 @@
+/* 
+
+---- 01 TYPOGRAPHY SYSTEM
+
+- Font
+p: Sansation
+
+
+- Font sizes (px)
+14 /16 /20 /24 /29 /34 /42
+
+- Spacing(px)
+2/ 4/ 8/ 12 / 16 /18 /20 /24 /30 /36/ 38/ 40 / 42 /44/ 58 
+
+- Font wights
+Default: 400
+Main-Headline: 800
+
+- Line heights
+Default: 1
+
+- Letter spacing
+Default: 0
+
+---- 02 COLORS
+- Primary: #ccd5ae
+
+-Tints: 
+#e6ead7
+#d1d9b6;
+
+
+
+-Accents:
+#292b23;
+#bebebe
+
+
+-Shades:
+#E9EDC9
+#fafbf7
+#fff;
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* 10px / 16px = 0.625 = 62.5% */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+
+  background-color: #ccd5ae;
+
+  box-sizing: border-box;
+}
+
+.main-container {
+  background-color: white;
+  box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.1);
+
+  margin: 8rem 14.4rem;
+
+  max-height: 60rem;
+  height: 60rem;
+  min-width: 50rem;
+  max-width: 111.6rem;
+
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.grid--col--3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--col--3 * {
+  min-width: 0;
+
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.task-column {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+
+  margin: 1.5rem;
+  padding: 1.5rem;
+
+  overflow: scroll;
+}
+
+/* Main */
+
+.main {
+  padding: 1.5rem;
+}
+
+li {
+  list-style: none;
+}
