@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import DescribeBox from "./DescribeBox";
 
-const THREE_SECONDS = 3 * 1000;
-
 export default function ThirdColumn({ selectTask, taskList, setTaskList }) {
   const [describeTask, setDescribeTask] = useState("");
   const [isSave, setIsSave] = useState(false);
