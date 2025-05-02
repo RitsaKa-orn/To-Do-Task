@@ -2,11 +2,25 @@ import { useState } from "react";
 import TaskName from "./TaskName";
 import TaskList from "./TaskList";
 
-export default function SecondColumn({ taskTopic, taskList, setTaskList }) {
+export default function SecondColumn({
+  taskTopic,
+  taskList,
+  setTaskList,
+  setSelectTask,
+  selectTask,
+}) {
   const [task, setTask] = useState("");
+  const [type, setType] = useState("Today");
   const [isAdding, setIsAdding] = useState(false);
   const [successAdded, setIsAdded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+
+  function handleDeleteTask(id) {
+    setTaskList((task) => task.filter((task) => task.id !== id));
+    if (selectTask?.id === id) {
+      setSelectTask(null);
+    }
+  }
 
   function handleOnAdding(text) {
     if (text !== "") {
@@ -18,13 +32,18 @@ export default function SecondColumn({ taskTopic, taskList, setTaskList }) {
   }
 
   function handleClickAdding() {
-    setTaskList([{ taskName: task }, ...taskList]);
+    setTaskList([
+      { taskName: task, type, id: crypto.randomUUID(), describe: "" },
+      ...taskList,
+    ]);
     setTask("");
     setIsAdding(false);
+    setType("Today");
 
     //susccess added
     setIsAdded(true);
     setIsVisible(true);
+    setSelectTask(null);
 
     setTimeout(() => {
       setIsVisible(false);
@@ -42,8 +61,9 @@ export default function SecondColumn({ taskTopic, taskList, setTaskList }) {
         <h2>{taskTopic}</h2>
         <span>
           {
-            taskList.filter((task) => task.type === taskTopic.toLowerCase())
-              .length
+            taskList.filter(
+              (task) => task.type.toLowerCase() === taskTopic.toLowerCase()
+            ).length
           }
         </span>
       </div>
@@ -63,9 +83,13 @@ export default function SecondColumn({ taskTopic, taskList, setTaskList }) {
         {isAdding && (
           <>
             <p>Due</p>
-            <select className="due-select">
-              <option>Today</option>
-              <option>Upcoming</option>
+            <select
+              value={type}
+              className="due-select"
+              onChange={(e) => setType(e.target.value)}
+            >
+              <option value="Today">Today</option>
+              <option value="Upcoming">Upcoming</option>
             </select>
             <button className="btn btn-add" onClick={handleClickAdding}>
               <svg
@@ -86,11 +110,29 @@ export default function SecondColumn({ taskTopic, taskList, setTaskList }) {
           </>
         )}
       </div>
-      <TaskName>
-        {taskList.map((task, i) => (
-          <TaskList key={i + 1}>{task.taskName}</TaskList>
-        ))}
-      </TaskName>
+      {taskList.length === 0 ? (
+        <div className="start-task">
+          <p>⬆️Start Adding your task...</p>
+        </div>
+      ) : (
+        <TaskName>
+          {taskList
+            .filter(
+              (task) => task.type.toLowerCase() === taskTopic.toLowerCase()
+            )
+            .map((task, i) => (
+              <TaskList
+                selectTask={selectTask}
+                setSelectTask={setSelectTask}
+                key={task.id}
+                task={task}
+                onDeleteTask={handleDeleteTask}
+              >
+                {task.taskName}
+              </TaskList>
+            ))}
+        </TaskName>
+      )}
     </div>
   );
 }

@@ -34,6 +34,7 @@ Default: 0
 -Accents:
 #292b23;
 #bebebe
+#B1B6A5;
 
 
 -Shades:
@@ -59,21 +60,32 @@ body {
   background-color: #ccd5ae;
 
   box-sizing: border-box;
+
+  height: 100vh;
+  width: 100vw;
+
+  position: relative;
 }
 
 .main-container {
   background-color: white;
   box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.1);
 
-  margin: 8rem 14.4rem;
+  margin: 0 auto;
 
-  max-height: 60rem;
-  height: 60rem;
-  min-width: 50rem;
-  max-width: 111.6rem;
+  min-height: 40rem;
+  height: 50rem;
+
+  width: 110.6rem;
+  max-width: 100%;
+  min-width: 0;
 
   border-radius: 20px;
-  overflow: hidden;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .grid--col--3 {
@@ -95,7 +107,7 @@ body {
   margin: 1.5rem;
   padding: 1.5rem;
 
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 /* Main */
