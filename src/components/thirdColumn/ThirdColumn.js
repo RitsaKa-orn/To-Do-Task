@@ -1,27 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import DescribeBox from "./DescribeBox";
+
+const THREE_SECONDS = 3 * 1000;
 
 export default function ThirdColumn({ selectTask, taskList, setTaskList }) {
   const [describeTask, setDescribeTask] = useState("");
   const [isSave, setIsSave] = useState(false);
 
-  useEffect(
-    function () {
-      if (!selectTask) {
-        setDescribeTask("");
-      } else {
-        setDescribeTask(selectTask.describe || "");
-      }
-    },
-    [selectTask]
-  );
+  const isDisplaySaveBtn = useMemo(() => {
+    return (
+      !!selectTask &&
+      !!describeTask &&
+      describeTask !== selectTask.describe &&
+      !isSave
+    );
+  }, [selectTask, describeTask, isSave]);
 
-  useEffect(
-    function () {
-      setIsSave(false);
-    },
-    [describeTask]
-  );
+  useEffect(() => {
+    if (!selectTask) {
+      setDescribeTask("");
+      return;
+    }
+
+    setDescribeTask(selectTask.describe || "");
+  }, [selectTask]);
 
   function handleSave(description) {
     if (!selectTask) return;
@@ -35,6 +37,11 @@ export default function ThirdColumn({ selectTask, taskList, setTaskList }) {
     setIsSave(true);
   }
 
+  function onChangeDescribeTask(e) {
+    setDescribeTask(e.target.value);
+    setIsSave(false);
+  }
+
   return (
     <div className="third-column task-column">
       <div className="headline third-headline">
@@ -46,7 +53,7 @@ export default function ThirdColumn({ selectTask, taskList, setTaskList }) {
           <div className="describe-main">
             <textarea
               value={describeTask}
-              onChange={(e) => setDescribeTask(e.target.value)}
+              onChange={onChangeDescribeTask}
               className="describe"
               placeholder={
                 !selectTask
@@ -56,10 +63,11 @@ export default function ThirdColumn({ selectTask, taskList, setTaskList }) {
               rows="10"
               cols="30"
               disabled={!selectTask}
-            ></textarea>
+            />
           </div>
         </DescribeBox>
-        {selectTask && describeTask !== selectTask.describe && !isSave && (
+
+        {isDisplaySaveBtn && (
           <div className="change-button">
             <button
               className="save-button"
@@ -69,6 +77,7 @@ export default function ThirdColumn({ selectTask, taskList, setTaskList }) {
             </button>
           </div>
         )}
+
         {isSave && <p className="save-notice">Changes Saved!</p>}
       </div>
     </div>
