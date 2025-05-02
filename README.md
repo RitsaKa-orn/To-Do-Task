@@ -46,8 +46,8 @@ In the project directory, you can :
 
 📸 Screenshots
 
-![Homepage](./screenshots/homepage.png)
+![Homepage](./public/homepage.png)
 
-![Task Form](./screenshots/taskAdding.png)
+![Task Form](./public/taskAdding.png)
 
 ---
