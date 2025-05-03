@@ -4,40 +4,37 @@ import DescribeBox from "./DescribeBox";
 export default function ThirdColumn({ selectTask, taskList, setTaskList }) {
   const [describeTask, setDescribeTask] = useState("");
   const [isSave, setIsSave] = useState(false);
+  const [isDisplaySaveBtn, setIsDisplaySaveBtn] = useState(false);
 
-  const isDisplaySaveBtn = useMemo(() => {
-    return (
-      !!selectTask &&
-      !!describeTask &&
-      describeTask !== selectTask.describe &&
-      !isSave
-    );
-  }, [selectTask, describeTask, isSave]);
+  const averageFadeOutTime = 3 * 1000;
 
   useEffect(() => {
-    if (!selectTask) {
+    if (selectTask?.describe) {
+      setDescribeTask(selectTask.describe);
+    } else {
       setDescribeTask("");
-      return;
     }
-
-    setDescribeTask(selectTask.describe || "");
   }, [selectTask]);
 
   function handleSave(description) {
-    if (!selectTask) return;
+    setIsDisplaySaveBtn(false);
+    setIsSave(true);
 
     const updateTasks = taskList.map((task) =>
       task.id === selectTask.id ? { ...task, describe: description } : task
     );
 
     setTaskList(updateTasks);
-    setDescribeTask(description);
-    setIsSave(true);
+
+    setTimeout(() => {
+      setIsSave(false);
+    }, averageFadeOutTime);
   }
 
   function onChangeDescribeTask(e) {
     setDescribeTask(e.target.value);
-    setIsSave(false);
+
+    setIsDisplaySaveBtn(e.target.value === "" ? false : true);
   }
 
   return (
