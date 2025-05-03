@@ -119,3 +119,17 @@ body {
 li {
   list-style: none;
 }
+
+// Loader
+
+.loader {
+  font-size: 1.8rem;
+
+  border-radius: 50px;
+  background-color: #dedede;
+  color: #bebebe;
+
+  align-content: center;
+
+  padding: 1.5rem;
+}

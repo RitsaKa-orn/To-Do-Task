@@ -58,14 +58,16 @@ export default function SecondColumn({
     <div className="second-column task-column">
       <div className="headline second-headline">
         {/* useState */}
-        <h2>{taskTopic}</h2>
-        <span>
-          {
-            taskList.filter(
-              (task) => task.type.toLowerCase() === taskTopic.toLowerCase()
-            ).length
-          }
-        </span>
+        <div className="task-topic-textbox">
+          <h2>{taskTopic}</h2>
+          <span>
+            {
+              taskList.filter(
+                (task) => task.type.toLowerCase() === taskTopic.toLowerCase()
+              ).length
+            }
+          </span>
+        </div>
       </div>
       <div className="add-task-box">
         <input
