@@ -74,7 +74,7 @@ body {
   margin: 0 auto;
 
   min-height: 40rem;
-  height: 50rem;
+  height: 58rem;
 
   width: 110.6rem;
   max-width: 100%;
@@ -132,4 +132,12 @@ li {
   align-content: center;
 
   padding: 1.5rem;
+}
+
+.mobile-nav-container {
+  display: none;
+}
+
+.sidebar {
+  display: block;
 }

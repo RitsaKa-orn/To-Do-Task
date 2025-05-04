@@ -133,8 +133,9 @@
 
 .weather-container:hover .forecast {
   width: 20rem;
-  height: 17rem;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  min-height: 17rem;
+  height: auto;
+  box-shadow: 5px 5px 10px rgbsa(0, 0, 0, 0.2);
 
   .forecast-text,
   .forecast div:nth-child(2) p:nth-child(4) {
@@ -176,7 +177,8 @@
   color: #fefefe;
 
   width: 10rem;
-  height: 13rem;
+  min-height: 15rem;
+  height: auto;
   padding: 1rem;
 
   font-size: 1.2rem;
@@ -464,17 +466,33 @@
 // Description Main
 
 .describe-main {
+  background-color: #ffffff;
+
+  border-radius: 20px;
+
+  margin-top: 1rem;
+
   padding: 2rem;
 
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.05);
+
+  transition: all 0.3s ease-in-out;
+
+  :hover {
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
   textarea {
-    border: none;
-    border-radius: 20px;
-    background-color: #bebebe34;
+    border: 1px solid #dcdcdc;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+
+    font-family: "Segoe UI", sans-serif;
 
     width: 100%;
-    height: 15rem;
+    height: 12rem;
 
-    padding: 2rem;
+    padding: 1rem;
 
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -489,6 +507,12 @@
     ::placeholder {
       color: #7a8068;
       font-weight: 400;
+
+      :focus {
+        outline: none;
+        border: 1px solid #b1b6a5;
+        box-shadow: 0 0 8px rgba(177, 182, 165, 0.3);
+      }
     }
   }
 }
