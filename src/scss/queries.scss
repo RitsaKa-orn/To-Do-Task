@@ -1,0 +1,125 @@
+// rem defined not useable here so px/16rem 1rem=1em = 16px
+
+// Desktop 1200 px(Smaller desktop)
+@media (max-width: 75em) {
+  .main-container {
+    width: 100rem;
+    height: 55rem;
+  }
+
+  .headline {
+    font-size: 1.4rem;
+  }
+
+  .task-topic-textbox h2,
+  .task-topic-textbox span {
+    font-size: 2.2rem;
+  }
+
+  .task-topic-textbox span {
+    height: 3.4rem;
+  }
+}
+
+// Tablets 992px(Tablet landscape)
+@media (max-width: 62em) {
+  .main-container {
+    width: 80rem;
+  }
+
+  .headline {
+    font-size: 1.2rem;
+  }
+
+  .task-topic-textbox h2,
+  .task-topic-textbox span {
+    font-size: 2rem;
+  }
+
+  .task-topic-textbox span {
+    height: 3rem;
+  }
+
+  .task-column {
+    margin: 1rem;
+  }
+
+  .first-column,
+  .task-list {
+    font-size: 1.2rem;
+  }
+
+  .second-column {
+    margin: 0;
+    padding: 0;
+
+    margin-top: 1rem;
+  }
+
+  .second-headline,
+  .add-task-box {
+    margin: 1rem;
+  }
+
+  .task-list {
+    padding: 0.5rem;
+  }
+
+  .task-list input {
+    margin-top: 0.3rem;
+  }
+
+  .describe-main {
+    padding: 0.5rem;
+  }
+}
+
+//Tablets 768px(tablets-portrait)
+@media (max-width: 48rem) {
+  .main-container {
+    min-width: 30rem;
+    width: 55rem;
+    height: 60rem;
+
+    gap: 0;
+  }
+
+  .mobile-nav-container {
+    display: block;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+  }
+
+  .hamburger-btn {
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  .mobile-menu button {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
